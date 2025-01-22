@@ -1,1 +1,32 @@
+#include <stdio.h>
+
+int main() {
+    FILE *file;
+    char filename[50], ch;
+
+    printf("Enter the file name: ");
+    scanf("%s", filename);
+
+    file = fopen(filename, "r");
+    if (file == NULL) {
+        printf("Error opening file!\n");
+        return 1;
+    }
+
+    printf("Contents of the file (character by character):\n");
+    while ((ch = fgetc(file)) != EOF) {
+        putchar(ch);
+    }
+
+    rewind(file);
+
+    printf("\nContents of the file (line by line):\n");
+    char line[256];
+    while (fgets(line, sizeof(line), file)) {
+        printf("%s", line);
+    }
+
+    fclose(file);
+    return 0;
+}
 

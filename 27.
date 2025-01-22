@@ -1,0 +1,23 @@
+#include <stdio.h>
+
+int main() {
+    FILE *file;
+    char filename[50], ch;
+
+    printf("Enter the file name to open in binary mode: ");
+    scanf("%s", filename);
+
+    file = fopen(filename, "rb");
+    if (file == NULL) {
+        printf("Error opening file!\n");
+        return 1;
+    }
+
+    printf("Contents of the file:\n");
+    while (fread(&ch, sizeof(char), 1, file)) {
+        printf("%c", ch);
+    }
+
+    fclose(file);
+    return 0;
+}

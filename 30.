@@ -1,0 +1,25 @@
+#include <stdio.h>
+
+int main() {
+    FILE *file;
+    char filename[50], text[256];
+
+    printf("Enter the file name: ");
+    scanf("%s", filename);
+
+    file = fopen(filename, "a");
+    if (file == NULL) {
+        printf("Error opening file!\n");
+        return 1;
+    }
+
+    printf("Enter text to append to the file: ");
+    getchar();
+    fgets(text, sizeof(text), stdin);
+
+    fputs(text, file);
+    printf("Text appended successfully.\n");
+
+    fclose(file);
+    return 0;
+}

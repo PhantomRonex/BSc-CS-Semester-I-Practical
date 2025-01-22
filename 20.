@@ -1,0 +1,23 @@
+#include <stdio.h>
+#include <string.h>
+
+int main() {
+    char str[100], str1[100], str2[100];
+
+    printf("Enter a string: ");
+    scanf("%s", str);
+
+    printf("Uppercase: %s\n", strupr(strcpy(str1, str)));
+    printf("Lowercase: %s\n", strlwr(strcpy(str2, str)));
+
+    int vowels = 0;
+    for (int i = 0; str[i]; i++) {
+        if (strchr("aeiouAEIOU", str[i])) vowels++;
+    }
+    printf("Number of vowels: %d\n", vowels);
+
+    printf("Reversed string: %s\n", strrev(strcpy(str2, str)));
+    printf("Concatenation without strcat: %s%s\n", str, str1);
+
+    return 0;
+}

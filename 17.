@@ -1,0 +1,120 @@
+#include <stdio.h>
+
+void printEven(int arr[], int n) {
+    printf("Even elements: ");
+    for (int i = 0; i < n; i++) {
+        if (arr[i] % 2 == 0) printf("%d ", arr[i]);
+    }
+    printf("\n");
+}
+
+void printOdd(int arr[], int n) {
+    printf("Odd elements: ");
+    for (int i = 0; i < n; i++) {
+        if (arr[i] % 2 != 0) printf("%d ", arr[i]);
+    }
+    printf("\n");
+}
+
+void calculateSumAndAverage(int arr[], int n) {
+    int sum = 0;
+    for (int i = 0; i < n; i++) {
+        sum += arr[i];
+    }
+    printf("Sum: %d, Average: %.2f\n", sum, (float)sum / n);
+}
+
+void findMinAndMax(int arr[], int n) {
+    int min = arr[0], max = arr[0];
+    for (int i = 1; i < n; i++) {
+        if (arr[i] < min) min = arr[i];
+        if (arr[i] > max) max = arr[i];
+    }
+    printf("Minimum: %d, Maximum: %d\n", min, max);
+}
+
+void removeDuplicates(int arr[], int *n) {
+    int temp[*n], k = 0;
+    for (int i = 0; i < *n; i++) {
+        int isDuplicate = 0;
+        for (int j = 0; j < k; j++) {
+            if (arr[i] == temp[j]) {
+                isDuplicate = 1;
+                break;
+            }
+        }
+        if (!isDuplicate) temp[k++] = arr[i];
+    }
+    for (int i = 0; i < k; i++) arr[i] = temp[i];
+    *n = k;
+}
+
+void printReverse(int arr[], int n) {
+    printf("Array in reverse order: ");
+    for (int i = n - 1; i >= 0; i--) {
+        printf("%d ", arr[i]);
+    }
+    printf("\n");
+}
+
+int main() {
+    int n, choice;
+    printf("Enter the size of the array: ");
+    scanf("%d", &n);
+    int arr[n];
+    printf("Enter %d elements:\n", n);
+    for (int i = 0; i < n; i++) {
+        scanf("%d", &arr[i]);
+    }
+
+    do {
+        printf("\nMenu:\n");
+        printf("1. Print even-valued elements\n");
+        printf("2. Print odd-valued elements\n");
+        printf("3. Calculate sum and average\n");
+        printf("4. Find minimum and maximum\n");
+        printf("5. Remove duplicates\n");
+        printf("6. Print array in reverse order\n");
+        printf("7. Re-enter array\n");
+        printf("8. Quit\n");
+        printf("Enter your choice: ");
+        scanf("%d", &choice);
+
+        switch (choice) {
+        case 1:
+            printEven(arr, n);
+            break;
+        case 2:
+            printOdd(arr, n);
+            break;
+        case 3:
+            calculateSumAndAverage(arr, n);
+            break;
+        case 4:
+            findMinAndMax(arr, n);
+            break;
+        case 5:
+            removeDuplicates(arr, &n);
+            printf("Duplicates removed. Updated array: ");
+            for (int i = 0; i < n; i++) printf("%d ", arr[i]);
+            printf("\n");
+            break;
+        case 6:
+            printReverse(arr, n);
+            break;
+        case 7:
+            printf("Re-enter %d elements:\n", n);
+            for (int i = 0; i < n; i++) {
+                scanf("%d", &arr[i]);
+            }
+            break;
+        case 8:
+            printf("Exiting program.\n");
+            break;
+        default:
+            printf("Invalid choice.\n");
+        }
+    } while (choice != 8);
+
+    return 0;
+}

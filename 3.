@@ -1,0 +1,15 @@
+#include <stdio.h>
+
+int main() {
+    int a, b, c;
+    printf("Enter three numbers: ");
+    scanf("%d %d %d", &a, &b, &c);
+
+    int smallest = (a < b && a < c) ? a : (b < c ? b : c);
+    int greatest = (a > b && a > c) ? a : (b > c ? b : c);
+
+    printf("Smallest: %d\n", smallest);
+    printf("Greatest: %d\n", greatest);
+
+    return 0;
+}
